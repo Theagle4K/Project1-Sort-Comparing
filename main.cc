@@ -9,9 +9,6 @@ int main(){
 	std::vector<int>arangedNumbers = { 198, 43 , 97, 8 , 1 , 34 , 7 ,2 };
 	Heapsort sort;
 	someNumbers = sort.hsort_vector(someNumbers);
-
-
-
 	//Test Case 1; ARE THESE VECTORS EQUAL AFTER SORTING
 	assert(someNumbers == arangedNumbers);
 
