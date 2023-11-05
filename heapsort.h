@@ -7,7 +7,8 @@ private:
 
 public:
 	void hget_vector(std::vector<int> _unsorted_vector);
-
+	bool check_heap(int parent, int childO, int childT);
+	std::vector<int> fix_heap();
 };
 
 
