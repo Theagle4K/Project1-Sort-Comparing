@@ -23,22 +23,43 @@ bool Heapsort::check_heap(int parent, int childO, int childT){
 std::vector<int> Heapsort::fix_heap(){
 
 	std::vector<int> empty  = {};
-	for(int i = Heapsort::unsorted_vector.size();i>0;i--)
+	for(int i = Heapsort::unsorted_vector.size();i>=0;i--)
 	{
 
-		int parent = Heapsort::unsorted_vector[i];
-		if(std::find( Heapsort::unsorted_vector.begin(), Heapsort::unsorted_vector.end(),Heapsort::unsorted_vector[2 * i + 1] )!= Heapsort::unsorted_vector.end())
+		if(std::find( Heapsort::unsorted_vector.begin(), Heapsort::unsorted_vector.end(),Heapsort::unsorted_vector[2 * i + 2] )!= Heapsort::unsorted_vector.end())
 		{
-			//Apply if child exist
-			return empty;
+			int parent = Heapsort::unsorted_vector[i];
+			int childO = Heapsort::unsorted_vector[2 * i + 1];
+			int childT = Heapsort::unsorted_vector[2 * i + 2];
+			if(!Heapsort::check_heap(parent, Heapsort::unsorted_vector[2 * i + 1], Heapsort::unsorted_vector[2 * i + 2]))
+			{
+				if(childO > childT)
+				{
+					if(parent <= Heapsort::unsorted_vector[2 * i + 1])
+					{
+						std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 1]);
+					}
+
+				}
+				if(childT > childO)
+				{
+					if(parent <= childT)
+					{
+						std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 2]);
+					}
+
+				}
+
+			}
+
 		}
 		else
 		{
-			//Child Doesn't exist
-			return empty;
+			//Child Doesn't Exist or Only One Exists
+
 		}
 
 	}
-	return empty;
+	return Heapsort::unsorted_vector;
 
 }
