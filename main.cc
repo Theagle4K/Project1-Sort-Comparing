@@ -2,6 +2,7 @@
 #include <vector>
 #include <cassert>
 #include "heapsort.h"
+#include "insertionsort.h"
 
 int main(){
 

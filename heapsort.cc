@@ -16,7 +16,7 @@ std::vector<int> Heapsort::hsort_vector(std::vector<int> _unsorted_vector){
  * Takes a number between vector.end() and vector.begin()
  * Returns a number according to the case
  */
-int Heapsort::check_child(int i){
+	int Heapsort::check_child(int i) const {
 	//If a parent have a second child,then it certainly have first child
 	if(std::find( Heapsort::unsorted_vector.begin(), Heapsort::unsorted_vector.end(),Heapsort::unsorted_vector[2 * i + 2] )!= Heapsort::unsorted_vector.end())
 			return 1;
@@ -32,23 +32,23 @@ int Heapsort::check_child(int i){
  * Takes no argument
  * Returns True for heap and False for not heap
  * */
-bool Heapsort::check_heap(){
+bool Heapsort::check_heap() const{
 	for(int i = Heapsort::unsorted_vector.size();i>=0;i--)
 	{
 		if(Heapsort::check_child(i)==1)
 		{
 			//Extra variables to make it look cleaner
 			int parent=Heapsort::unsorted_vector[i];
-			int childO=Heapsort::unsorted_vector[2 * i + 1];
-			int childT=Heapsort::unsorted_vector[2 * i + 2];
-			if(parent < childO || parent < childT) //If any of the children is bigger, immediately returns false
+			int childL=Heapsort::unsorted_vector[2 * i + 1];
+			int childR=Heapsort::unsorted_vector[2 * i + 2];
+			if(parent < childL || parent < childR) //If any of the children is bigger, immediately returns false
 				return false;
 		}
 		if(Heapsort::check_child(i)==2)
 		{
 			int parent=Heapsort::unsorted_vector[i];
-			int childO=Heapsort::unsorted_vector[2 * i + 1];
-			if(parent < childO) //Only one, so if it is bigger, immediately returns false
+			int childL=Heapsort::unsorted_vector[2 * i + 1];
+			if(parent < childL) //Only one, so if it is bigger, immediately returns false
 				return false;
 		}
 	}
@@ -65,14 +65,14 @@ std::vector<int> Heapsort::fix_heap(){
 			if(Heapsort::check_child(i) == 1)
 			{
 				int parent = Heapsort::unsorted_vector[i];
-				int childO = Heapsort::unsorted_vector[2 * i + 1];
-				int childT = Heapsort::unsorted_vector[2 * i + 2];
+				int childL = Heapsort::unsorted_vector[2 * i + 1];
+				int childR = Heapsort::unsorted_vector[2 * i + 2];
 
-				if(childO > childT && parent < childO)
+				if(childL > childR && parent < childL)
 					//Makes sure you are only switching once for each triple
 					//Only switches with the parent if it's the biggest, not if it's just bigger than parent
 					std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 1]);
-				if(childT > childO && parent < childT)
+				if(childR > childL && parent < childR)
 					std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 2]);
 				//Also for the swaps, using the variables don't work so I had to use original value
 			}
@@ -80,8 +80,8 @@ std::vector<int> Heapsort::fix_heap(){
 			{
 				//Same as above but only if one child exists
 				int parent = Heapsort::unsorted_vector[i];
-				int childO = Heapsort::unsorted_vector[2 * i + 1];
-				if(parent <= childO)
+				int childL = Heapsort::unsorted_vector[2 * i + 1];
+				if(parent <= childL)
 					std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 1]);
 
 			}

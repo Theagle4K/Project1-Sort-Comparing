@@ -7,8 +7,8 @@ private:
 
 public:
 	std::vector<int> hsort_vector(std::vector<int> _unsorted_vector);
-	int check_child(int i);
-	bool check_heap();
+	int check_child(int const i) const;
+	bool check_heap() const;
 	std::vector<int> fix_heap();
 };
 
