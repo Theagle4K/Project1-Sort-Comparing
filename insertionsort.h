@@ -8,7 +8,8 @@ private:
 	std::vector<int> sorted_array;
 
 public:
-
+	void get_vector(std::vector<int> _unsorted_vector);
+	std::vector<int> i_sort();
 
 };
 
