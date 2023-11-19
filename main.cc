@@ -10,11 +10,10 @@ int main(){
 	std::vector<int>arangedNumbers = { 198, 43 , 97, 8 , 1 , 34 , 7 ,2 };
 	Heapsort sort;
 	someNumbers = sort.hsort_vector(someNumbers);
-	std::vector<int>somenumbers_T = { 12, 11, 13, 5, 6 };
-	std::vector<int>arangednumbers_T = { 5, 6, 11, 12, 13 };
+	std::vector<int>somenumbers_T = {3,3,2,4,5,2,4,1,1,7,3};
+	std::vector<int>arangednumbers_T = { 1,1,2,2,3,3,3,4,4,5,7 };
 	insertionsort sort_T;
-	sort_T.get_vector(somenumbers_T);
-	somenumbers_T=sort_T.i_sort();
+	somenumbers_T=sort_T.init_isort(somenumbers_T);
 	//Test Case 1; ARE THESE VECTORS EQUAL AFTER SORTING
 	assert(someNumbers == arangedNumbers);
 	//Test Case 2;
