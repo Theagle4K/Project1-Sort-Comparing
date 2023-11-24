@@ -91,3 +91,4 @@ std::vector<int> Heapsort::fix_heap(){
 	return Heapsort::unsorted_vector;
 
 }
+//Add listing numbers by deleting the largest and then changing it with the smallest, so you get a fully sorted array rather then a heap
