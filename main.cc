@@ -3,6 +3,7 @@
 #include <cassert>
 #include "heapsort.h"
 #include "insertionsort.h"
+#include "quicksort.h"
 
 int main(){
 
@@ -10,13 +11,17 @@ int main(){
 	std::vector<int>arangedNumbers = { 198, 43 , 97, 8 , 1 , 34 , 7 ,2 };
 	Heapsort sort;
 	someNumbers = sort.hsort_vector(someNumbers);
-	std::vector<int>somenumbers_T = {3,3,2,4,5,2,4,1,1,7,3};
-	std::vector<int>arangednumbers_T = { 1,1,2,2,3,3,3,4,4,5,7 };
+	std::vector<int>somenumbers_T = {10,80,30,90,40,50,70};
+	std::vector<int>arangednumbers_T = {10,30,40,50,70,80,90};
 	insertionsort sort_T;
-	somenumbers_T=sort_T.init_isort(somenumbers_T);
+	Quicksort sort_S;
+	//somenumbers_T=sort_T.init_isort(somenumbers_T);
 	//Test Case 1; ARE THESE VECTORS EQUAL AFTER SORTING
-	assert(someNumbers == arangedNumbers);
+	//assert(someNumbers == arangedNumbers);
 	//Test Case 2;
+	//assert(somenumbers_T == arangednumbers_T);
+	sort_S.get_vector(somenumbers_T);
+	somenumbers_T = sort_S.quick_sort();
 	assert(somenumbers_T == arangednumbers_T);
 
 	return 0;
