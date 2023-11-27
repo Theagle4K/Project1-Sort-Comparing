@@ -4,7 +4,8 @@
 class Heapsort{
 private:
 	std::vector<int>unsorted_vector;
-	int check_child(int i) const;
+	std::vector<int>sorted_vector;
+	int check_child(int unsigned i) const;
 	bool check_heap() const;
 	std::vector<int> fix_heap();
 

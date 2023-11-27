@@ -6,22 +6,34 @@
 /*
  * This function takes a vector value and initiates fix_heap
  * Works as the main function
+ * Also takes the heap and puts it to order by rearranging the heap until no value is left in the original vector
  */
 std::vector<int> Heapsort::hsort_vector(std::vector<int> _unsorted_vector){
 	Heapsort::unsorted_vector = _unsorted_vector;
-	return Heapsort::fix_heap();
+	while(!Heapsort::unsorted_vector.empty()){
+		Heapsort::fix_heap();
+		if(Heapsort::unsorted_vector.size()>1){
+			std::swap(Heapsort::unsorted_vector[0],Heapsort::unsorted_vector[Heapsort::unsorted_vector.size() - 1]);
+			Heapsort::sorted_vector.insert(Heapsort::sorted_vector.begin(),Heapsort::unsorted_vector[Heapsort::unsorted_vector.size() - 1]);
+			Heapsort::unsorted_vector.pop_back();
+		}else {
+			Heapsort::sorted_vector.insert(Heapsort::sorted_vector.begin(),Heapsort::unsorted_vector[Heapsort::unsorted_vector.size() - 1]);
+			Heapsort::unsorted_vector.pop_back();
+		}
+	}
+	return Heapsort::sorted_vector;
 }
 /*
  * Checks out weather or not the value has children or a child
  * Takes a number between vector.end() and vector.begin()
  * Returns a number according to the case
  */
-	int Heapsort::check_child(int i) const {
+	int Heapsort::check_child(int unsigned i) const {
 	//If a parent have a second child,then it certainly have first child
-	if(std::find( Heapsort::unsorted_vector.begin(), Heapsort::unsorted_vector.end(),Heapsort::unsorted_vector[2 * i + 2] )!= Heapsort::unsorted_vector.end())
+	if((2*i + 2) <= Heapsort::unsorted_vector.size() - 1)
 			return 1;
 	//If second child is not there it still checks out for the first one and returns a different case
-		else if(std::find( Heapsort::unsorted_vector.begin(), Heapsort::unsorted_vector.end(),Heapsort::unsorted_vector[2 * i + 1] )!= Heapsort::unsorted_vector.end())
+		else if((2*i + 1) <= Heapsort::unsorted_vector.size() - 1)
 			return 2;
 	//And if first child also doesn't exist, returns last case
 		else
@@ -33,7 +45,7 @@ std::vector<int> Heapsort::hsort_vector(std::vector<int> _unsorted_vector){
  * Returns True for heap and False for not heap
  * */
 bool Heapsort::check_heap() const{
-	for(int i = Heapsort::unsorted_vector.size();i>=0;i--)
+	for(int i = Heapsort::unsorted_vector.size()- 1;i>=0;i--)
 	{
 		if(Heapsort::check_child(i)==1)
 		{
@@ -60,7 +72,7 @@ bool Heapsort::check_heap() const{
 std::vector<int> Heapsort::fix_heap(){
 	while(!Heapsort::check_heap()){
 		// Checks it out multiple times until every heap triple is fixed
-		for(int i = Heapsort::unsorted_vector.size();i>=0;i--)
+		for(int i = Heapsort::unsorted_vector.size() - 1;i>=0;i--)
 		{
 			if(Heapsort::check_child(i) == 1)
 			{
@@ -91,4 +103,3 @@ std::vector<int> Heapsort::fix_heap(){
 	return Heapsort::unsorted_vector;
 
 }
-//Add listing numbers by deleting the largest and then changing it with the smallest, so you get a fully sorted array rather then a heap
