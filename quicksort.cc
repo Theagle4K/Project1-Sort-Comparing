@@ -43,7 +43,8 @@ std::vector<std::vector<int>> Quicksort::divide_vector(std::vector<int> _unsorte
 		vector_o_vector.insert(vector_o_vector.begin(),smaller_vector);
 	return vector_o_vector; // Put the vectors obtained from the process and add them to the list according to their placement regarding pivot
 }
-std::vector<int> Quicksort::init_qsort(){ // Start up the quicksort and keep dividing each vector until every vector is divided
+std::vector<int> Quicksort::init_qsort(std::vector<int> _unsorted_vector){ // Start up the quicksort and keep dividing each vector until every vector is divided
+	Quicksort::get_vector(_unsorted_vector);
 	std::vector<int> _sorted_vector;
 	while(Quicksort::vector_o_vector.size()> 0){
 		if(Quicksort::vector_o_vector[0].size()> 1)
