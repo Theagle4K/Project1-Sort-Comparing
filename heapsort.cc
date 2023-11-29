@@ -81,11 +81,11 @@ std::vector<int> Heapsort::fix_heap(){
 				int childL = Heapsort::unsorted_vector[2 * i + 1];
 				int childR = Heapsort::unsorted_vector[2 * i + 2];
 
-				if(childL > childR && parent < childL)
+				if(childL >= childR && parent < childL)
 					//Makes sure you are only switching once for each triple
 					//Only switches with the parent if it's the biggest, not if it's just bigger than parent
 					std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 1]);
-				if(childR > childL && parent < childR)
+				if(childR >= childL && parent < childR)
 					std::swap(Heapsort::unsorted_vector[i],Heapsort::unsorted_vector[2 * i + 2]);
 				//Also for the swaps, using the variables don't work so I had to use original value
 			}

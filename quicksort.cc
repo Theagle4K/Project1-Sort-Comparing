@@ -38,10 +38,20 @@ std::vector<std::vector<int>> Quicksort::divide_vector(std::vector<int> _unsorte
 	Quicksort::vector_o_vector.erase(Quicksort::vector_o_vector.begin());//Erase the already divided from the list
 	if(!bigger_vector.empty())
 		vector_o_vector.insert(vector_o_vector.begin(),bigger_vector);
-	if(!pivot_vector.empty())
-		vector_o_vector.insert(vector_o_vector.begin(),pivot_vector);
+	if(!pivot_vector.empty()){
+		if((bigger_vector.empty() && smaller_vector.empty()) && pivot_vector.size() > 1){
+			for(size_t i = 0; i < pivot_vector.size();i++){
+				std::vector<int>single_pivot(1);
+				single_pivot[0] = pivot_vector[i];
+				vector_o_vector.insert(vector_o_vector.begin(),single_pivot);
+				single_pivot.clear();
+			}
+		}else
+			vector_o_vector.insert(vector_o_vector.begin(),pivot_vector);
+	}
 	if(!smaller_vector.empty())
 		vector_o_vector.insert(vector_o_vector.begin(),smaller_vector);
+
 	return vector_o_vector; // Put the vectors obtained from the process and add them to the list according to their placement regarding pivot
 }
 std::vector<int> Quicksort::init_qsort(std::vector<int> _unsorted_vector){ // Start up the quicksort and keep dividing each vector until every vector is divided
