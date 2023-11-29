@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "heapsort.h"
 #include <chrono>
+#include <cassert>
 
 /*
  * This function takes a vector value and initiates fix_heap
@@ -108,5 +109,6 @@ long Heapsort::timelapsingh(std::vector<int> _unsorted_vector){
 	auto start = std::chrono::steady_clock::now();
 	Heapsort::hsort_vector(_unsorted_vector);
 	auto end = std::chrono::steady_clock::now();
-	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+	assert(std::is_sorted(Heapsort::sorted_vector.begin(),Heapsort::sorted_vector.end()));
+	return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 }

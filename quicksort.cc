@@ -4,6 +4,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <chrono>
+#include <cassert>
+#include <algorithm>
 
 //Get function, basically putting a vector in class and preparing to get divided
 void Quicksort::get_vector(std::vector<int> _unsorted_vector){
@@ -72,6 +74,7 @@ long Quicksort::timelapsingq(std::vector<int> _unsorted_vector){
 	auto start = std::chrono::steady_clock::now();
 	Quicksort::init_qsort(_unsorted_vector);
 	auto end = std::chrono::steady_clock::now();
-	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+	assert(std::is_sorted(Quicksort::sorted_vector.begin(),Quicksort::sorted_vector.end()));
+	return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 }
 

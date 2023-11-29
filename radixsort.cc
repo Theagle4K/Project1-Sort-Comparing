@@ -3,6 +3,8 @@
 #include <vector>
 #include <cmath>
 #include <chrono>
+#include <algorithm>
+#include <cassert>
 
 void Radixsort::get_vector(std::vector<int> _unsorted_vector){
 	Radixsort::unsorted_vector = _unsorted_vector;
@@ -51,6 +53,7 @@ long Radixsort::timelapsingr(std::vector<int> _unsorted_vector,int _rad){
 	auto start = std::chrono::steady_clock::now();
 	Radixsort::init_rsort(_unsorted_vector,_rad);
 	auto end = std::chrono::steady_clock::now();
-	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+	assert(std::is_sorted(Radixsort::unsorted_vector.begin(),Radixsort::unsorted_vector.end()));
+	return std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 }
 
