@@ -4,6 +4,7 @@
 #include "heapsort.h"
 #include "insertionsort.h"
 #include "quicksort.h"
+#include "radixsort.h"
 #include <bits/stdc++.h>
 
 int main(){
@@ -17,8 +18,12 @@ int main(){
 	std::vector<int>arangednumbers_T = {10,30,40,50,70,80,90};
 	std::vector<int>somenumbers_S = {10,80,30,90,40,50,70};
 	std::vector<int>arangednumbers_S = {10,30,40,50,70,80,90};
+	std::vector<int>somenumbers_R = {10,80,30,90,40,50,70};
+	std::vector<int>arangednumbers_R = {10,30,40,50,70,80,90};
 	insertionsort sort_T;
 	Quicksort sort_S;
+	Radixsort sort_R;
+	somenumbers_R = sort_R.init_rsort(somenumbers_R,0);
 	somenumbers_S = sort_S.init_qsort(somenumbers_S);
 	somenumbers_T = sort_T.init_isort(somenumbers_T);
 	//Test Case 1; ARE THESE VECTORS EQUAL AFTER SORTING
@@ -27,6 +32,8 @@ int main(){
 	assert(somenumbers_T == arangednumbers_T);
 	//Test Case 3
 	assert(somenumbers_S == arangednumbers_S);
+	//Test Case $
+	assert(somenumbers_R == arangednumbers_R);
 
 	return 0;
 }
