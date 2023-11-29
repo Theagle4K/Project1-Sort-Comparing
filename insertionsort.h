@@ -12,6 +12,7 @@ private:
 public:
 
 	std::vector<int> init_isort(std::vector<int> _unsorted_array);
+	long timelapsingi(std::vector<int> _unsorted_array);
 
 };
 

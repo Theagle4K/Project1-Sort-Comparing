@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include "heapsort.h"
+#include <chrono>
 
 /*
  * This function takes a vector value and initiates fix_heap
@@ -102,4 +103,10 @@ std::vector<int> Heapsort::fix_heap(){
 
 	return Heapsort::unsorted_vector;
 
+}
+long Heapsort::timelapsingh(std::vector<int> _unsorted_vector){
+	auto start = std::chrono::steady_clock::now();
+	Heapsort::hsort_vector(_unsorted_vector);
+	auto end = std::chrono::steady_clock::now();
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 }

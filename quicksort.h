@@ -15,6 +15,7 @@ public:
 
 
 	std::vector<int> init_qsort(std::vector<int> _unsorted_vector);
+	long timelapsingq(std::vector<int> _unsorted_array);
 
 };
 

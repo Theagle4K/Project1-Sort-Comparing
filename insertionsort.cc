@@ -2,6 +2,7 @@
 #include <vector>
 #include "insertionsort.h"
 #include <algorithm>
+#include <chrono>
 
 //Gets the vector to use it, fairly simple.
 void insertionsort::get_vector(std::vector<int> _unsorted_array){
@@ -40,4 +41,10 @@ std::vector<int> insertionsort::init_isort(std::vector<int> _unsorted_array){
 	insertionsort::get_vector(_unsorted_array);
 	insertionsort::sorted_array = insertionsort::i_sort();
 	return insertionsort::sorted_array;
+}
+long insertionsort::timelapsingi(std::vector<int> _unsorted_vector){
+	auto start = std::chrono::steady_clock::now();
+	insertionsort::init_isort(_unsorted_vector);
+	auto end = std::chrono::steady_clock::now();
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
 }

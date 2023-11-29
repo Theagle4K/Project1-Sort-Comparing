@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <chrono>
 
 void Radixsort::get_vector(std::vector<int> _unsorted_vector){
 	Radixsort::unsorted_vector = _unsorted_vector;
@@ -14,7 +15,7 @@ int Radixsort::get_radius(int rad /*= 0*/){
 	return int (std::log10(rad) + 1);
 }
 
-std::vector<int> Radixsort::countsort(int digit){
+void Radixsort::countsort(int digit){
 	std::vector<int> countar(10,0);
 
 	for(size_t i = 0;i < Radixsort::unsorted_vector.size();i++){
@@ -28,9 +29,11 @@ std::vector<int> Radixsort::countsort(int digit){
 	for(int i = Radixsort::unsorted_vector.size() - 1; i >= 0; i--){
 		int posc = (Radixsort::unsorted_vector[i]/digit) % 10;
 		int pos=--countar[posc];
-		sorted_digits[pos] = posc;
+		sorted_digits[pos] = Radixsort::unsorted_vector[i];
 	}
-	return sorted_digits;
+	for(size_t j = 0; j < Radixsort::unsorted_vector.size();j++){
+		Radixsort::unsorted_vector[j] = sorted_digits[j];
+	}
 }
 
 std::vector<int> Radixsort::init_rsort(std::vector<int> _unsorted_vector,int _rad /*= 0*/){
@@ -39,10 +42,15 @@ std::vector<int> Radixsort::init_rsort(std::vector<int> _unsorted_vector,int _ra
 	Radixsort::sorted_vector.resize(Radixsort::unsorted_vector.size(),0);
 
 	for(int base = 1 ;std::log10(base)<rad;base*=10){
-		std::vector<int> digits = Radixsort::countsort(base);
-		for(size_t j = 0; j < Radixsort::unsorted_vector.size();j++){
-			Radixsort::sorted_vector[j] += digits[j]*base;
-		}
+		Radixsort::countsort(base);
 	}
-	return Radixsort::sorted_vector;
+
+	return Radixsort::unsorted_vector;
 }
+long Radixsort::timelapsingr(std::vector<int> _unsorted_vector,int _rad){
+	auto start = std::chrono::steady_clock::now();
+	Radixsort::init_rsort(_unsorted_vector,_rad);
+	auto end = std::chrono::steady_clock::now();
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+}
+
